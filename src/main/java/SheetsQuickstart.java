@@ -11,6 +11,9 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
+import com.lewandowski.excel.api.demo.dto.ExcelDto;
+import com.lewandowski.excel.api.demo.service.ExcelServiceDto;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +23,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class SheetsQuickstart {
+
     private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
@@ -31,6 +36,7 @@ public class SheetsQuickstart {
      */
     private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
     private static final String CREDENTIALS_FILE_PATH = "credentials.json";
+
 
     /**
      * Creates an authorized Credential object.
@@ -50,7 +56,7 @@ public class SheetsQuickstart {
                 .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
                 .setAccessType("offline")
                 .build();
-        return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+        return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("72735926011-olscp2ue6oa0d3hf8qprf9jdif7000tp.apps.googleusercontent.com");
     }
 
     /**
@@ -92,6 +98,7 @@ public class SheetsQuickstart {
         allData.add(dayOffList);
         System.out.println("Remote = " + remoteList.toString());
         System.out.println("Day Off = " + dayOffList.toString());
+
 
 
     }
