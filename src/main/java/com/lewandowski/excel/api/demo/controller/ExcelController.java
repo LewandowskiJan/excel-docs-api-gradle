@@ -1,6 +1,7 @@
 package com.lewandowski.excel.api.demo.controller;
 
-import com.lewandowski.excel.api.demo.service.ExcelService;
+import com.lewandowski.excel.api.demo.dto.ExcelDto;
+import com.lewandowski.excel.api.demo.service.ExcelServiceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +14,15 @@ import java.util.List;
 public class ExcelController {
 
     @Autowired
-    ExcelService excelService;
+    ExcelServiceDto excelServiceDto;
 
-    @GetMapping("/list")
-    public String showPresentList() throws IOException, GeneralSecurityException {
+    @GetMapping("/show")
+    public void showPresentList() throws IOException, GeneralSecurityException {
 
-        List<List<Object>> result = excelService.getDataFormWorkbook();
+        List<List<ExcelDto>> result = excelServiceDto.getExcelDtoList();
 
         System.out.println(result);
-        return "index.jsp";
+
     }
 
 }
