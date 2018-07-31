@@ -1,0 +1,18 @@
+.list-tab{
+    background-color: transparent;
+    text-align: center;
+    border-radius: 20px;
+}
+p, td, th, tr{
+    color: #b2b8c1;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+body{
+ background-color: green;
+}
