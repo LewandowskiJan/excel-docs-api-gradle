@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ExcelServiceDto {
 
-    List<List<ExcelDto>> getExcelDtoList() throws IOException, GeneralSecurityException;
+    List<ExcelDto> getExcelDtoList() throws IOException, GeneralSecurityException;
 
 }
