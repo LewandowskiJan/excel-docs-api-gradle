@@ -15,6 +15,18 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet"/>
+
+    <script>
+
+        setTimeout(location.reload.bind(location), 10000);
+       // let timeSecond = 5;
+       // let timeMinutes = 1e3 * timeSecond;
+       // function init() {
+       //     fetch("http://localhost:8080/show").then(data => {render(data)})
+       // }
+       //init()(setInterval(init, timeMinutes))
+    </script>
+
 </head>
 <body>
 
@@ -24,36 +36,36 @@
 
 </div>
 
-    <div class="container">
-        <div class="list-tab">
-            <div class="row">
-                <div class="col-sm-6">
-                    <table class="table table-dark table-striped">
-                        <tr>
-                            <th>
-                                <p th:text="'Wolne: ' + ${holidayCount}"/>
-                            </th>
-                        </tr>
-                        <tr th:each="holiday : ${holidayList}">
-                            <td th:text="${holiday.getName()}">Name</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-sm-6">
-                    <table class="table table-dark table-striped">
-                        <tr>
-                            <th>
-                                <p th:text="'Zdalnie: ' + ${remoteCount}"/>
-                            </th>
-                        </tr>
-                        <tr th:each="remote : ${remoteList}">
-                            <td th:text="${remote.getName()}">Name</td>
-                        </tr>
-                    </table>
-                </div>
+<div class="container">
+    <div class="list-tab">
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table table-dark table-striped">
+                    <tr>
+                        <th>
+                            <p th:text="'Wolne: ' + ${holidayCount}"/>
+                        </th>
+                    </tr>
+                    <tr th:each="holiday : ${holidayList}">
+                        <td th:text="${holiday.getName()}">Name</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <table class="table table-dark table-striped">
+                    <tr>
+                        <th>
+                            <p th:text="'Zdalnie: ' + ${remoteCount}"/>
+                        </th>
+                    </tr>
+                    <tr th:each="remote : ${remoteList}">
+                        <td th:text="${remote.getName()}">Name</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
+</div>
 
 
 </body>
