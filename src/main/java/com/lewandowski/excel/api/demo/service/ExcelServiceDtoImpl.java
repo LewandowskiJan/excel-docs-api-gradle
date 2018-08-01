@@ -64,10 +64,6 @@ public class ExcelServiceDtoImpl implements ExcelServiceDto {
     @Override
     public List<ExcelDto> getExcelDtoList() throws IOException, GeneralSecurityException {
 
-
-        List<ExcelDto> remoteDtoExcel = new ArrayList<>();
-        List<ExcelDto> dayOffDtoExcel = new ArrayList<>();
-
         List<String> remoteList = new ArrayList<>();
         List<String> dayOffList = new ArrayList<>();
 
