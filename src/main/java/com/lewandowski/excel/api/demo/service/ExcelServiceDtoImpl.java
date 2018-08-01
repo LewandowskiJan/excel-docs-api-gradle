@@ -81,7 +81,7 @@ public class ExcelServiceDtoImpl implements ExcelServiceDto {
         if (values == null || values.isEmpty()) {
             System.out.println("No data found.");
         } else {
-            System.out.println("Zdalnie, Urlop");
+            //System.out.println("Zdalnie, Urlop");
             for (List row : values) {
                 // Print columns A and E, which correspond to indices 0 and 4.
                 //System.out.printf("%s, %s\n", row.get(0), row.get(1));
@@ -102,7 +102,6 @@ public class ExcelServiceDtoImpl implements ExcelServiceDto {
 
         for (String remote : remoteList) {
             ExcelDto dto = new ExcelDto();
-            System.out.println(remote);
             dto.setName(remote);
             dto.setHoliday(false);
             dto.setRemote(true);

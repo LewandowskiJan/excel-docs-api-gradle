@@ -35,7 +35,7 @@ public class ExcelController {
 
         List<ExcelDto> result = excelServiceDto.getExcelDtoList();
 
-        System.out.println(result);
+        //System.out.println(result);
 
         List<ExcelDto> remoteList = new ArrayList<>();
         List<ExcelDto> holidayList = new ArrayList<>();
