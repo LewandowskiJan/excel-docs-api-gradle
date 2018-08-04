@@ -14,6 +14,8 @@ public class ExcelDto {
 
     private String name;
 
+    private String date;
+
     private boolean remote;
 
     private boolean holiday;
@@ -53,12 +55,22 @@ public class ExcelDto {
         this.name = name;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "ExcelDto{" +
-                "name='" + name + '\'' +
-                ", remote='" + remote + '\'' +
-                ", holiday='" + holiday + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", remote=" + remote +
+                ", holiday=" + holiday +
                 '}';
     }
 }
