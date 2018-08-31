@@ -2,12 +2,7 @@
 <module external.linked.project.id="gradle-excel-api:main" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="" external.system.module.type="sourceSet" external.system.module.version="1.0" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="fileset" name="MyWebAppInitializer" removed="false">
-          <file>file://$MODULE_DIR$/../../src/main/java/com/lewandowski/excel/api/demo/config/MyWebAppInitializer.java</file>
-          <file>file://$MODULE_DIR$/../../src/main/java/com/lewandowski/excel/api/demo/DemoApplication.java</file>
-        </fileset>
-      </configuration>
+      <configuration />
     </facet>
     <facet type="web" name="Web">
       <configuration>
@@ -17,7 +12,7 @@
     <facet type="web" name="Web Gradle : gradle-excel-api-1.0.war">
       <configuration>
         <webroots>
-          <root url="file://D:\Repo\Spring-Web-ExcelOnline-Api\gradle-excel-api\src\main\webapp" relative="/" />
+          <root url="file://D:\Repo\gradle-excel-api\src\main\webapp" relative="/" />
         </webroots>
       </configuration>
     </facet>
@@ -109,5 +104,6 @@
     <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-api:2.10.0" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.11" level="project" />
+    <orderEntry type="library" name="jquery-3.3.1.slim" level="application" />
   </component>
 </module>

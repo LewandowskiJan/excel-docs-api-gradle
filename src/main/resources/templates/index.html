@@ -1,79 +1,337 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+>
 <head>
     <title>Lista obecności</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
     <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet"/>
+    <link href="../static/css/app.js" th:href="@{/css/app.js}" rel="stylesheet"/>
 
     <script>
 
-        setTimeout(location.reload.bind(location), 15000);
+        setTimeout(location.reload.bind(location), 50000);
 
     </script>
 
 </head>
 <body>
 
-<div class="jumbotron jumbotron-fluid" style="height: 200px">
+<div class="jumbotron jumbotron-fluid" style="height: 100px">
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <img src="https://www.infopraca.pl/logo/759352-2/v/170808121159" class="rounded" alt="Yieldbird Logo" height="100" width="240"/>
+                <img src="../static/css/logo.png" th:src="@{/css/logo.png}" class="rounded" alt="Yieldbird Logo"
+                     width="150"/>
             </div>
             <div class="col-sm-8">
-                <h1>Lista nieobecnosci</h1>
+                <h2 style="text-align:right" th:text="${now}"></h2>
             </div>
-
 
 
         </div>
     </div>
-
-
 </div>
 
-<div class="container">
-    <div class="list-tab">
-        <div class="row">
-            <div class="col-sm-6">
-                <table class="table table-dark table-striped">
-                    <tr>
-                        <th>
-                            <p th:text="'Wolne: ' + ${holidayCount}"/>
-                        </th>
-                    </tr>
-                    <tr th:each="holiday : ${holidayList}">
-                        <td th:text="${holiday.getName()}">Name</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-sm-6">
-                <table class="table table-dark table-striped">
-                    <tr>
-                        <th>
-                            <p th:text="'Zdalnie: ' + ${remoteCount}"/>
-                        </th>
-                    </tr>
-                    <tr th:each="remote : ${remoteList}">
-                        <td th:text="${remote.getName()}">Name</td>
-                    </tr>
-                </table>
+<div class="container-fluid" style="background-color: #eee">
+    <div class="row">
+        <div class="col-md-6 col-lg-offset-3">
+            <div class="col-xs-6"><h2 th:text="'Wolne: ' + ${holidayCount}"></h2></div>
+            <div class="col-xs-6"><h2 th:text="'Do dnia: '"></h2></div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="height: 500px">
+
+    <div class="row">
+        <div class="col-md-6 col-lg-offset-3">
+            <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+                <!-- Carousel items -->
+                <div class="carousel-inner" role="listbox">
+
+                    <div th:if="${holidayList1.size()} != 0 " class="carousel-item active">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="holiday1 : ${holidayList1}">
+                                <td th:text="${holiday1.getName()}">Name</td>
+                                <td th:text="${holiday1.getDate()}">Data</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr >
+                                <td >Name</td>
+                                <td >Data</td>
+                            </tr>
+                            <tr >
+                                <td >Name</td>
+                                <td >Data</td>
+                            </tr>
+                            <tr >
+                                <td >Name</td>
+                                <td >Data</td>
+                            </tr>
+                            <tr >
+                                <td >Name</td>
+                                <td >Data</td>
+                            </tr>
+                            <tr >
+                                <td >Name</td>
+                                <td >Data</td>
+                            </tr>
+                            <tr >
+                                <td >Name</td>
+                                <td >Data</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div th:if="${holidayList2.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="holiday2 : ${holidayList2}">
+                                <td th:text="${holiday2.getName()}">Name</td>
+                                <td th:text="${holiday2.getDate()}">Data</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${holidayList3.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="holiday3 : ${holidayList3}">
+                                <td th:text="${holiday3.getName()}"></td>
+                                <td th:text="${holiday3.getDate()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${holidayList4.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="holiday4 : ${holidayList4}">
+                                <td th:text="${holiday4.getName()}"></td>
+                                <td th:text="${holiday4.getDate()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${holidayList5.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="holiday5 : ${holidayList5}">
+                                <td th:text="${holiday5.getName()}">Name</td>
+                                <td th:text="${holiday5.getDate()}">Data</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="container-fluid" style="background-color: #eee">
+    <div class="row">
+        <div class="col-md-6 col-lg-offset-3">
+            <div class="col-xs-6"><h2 th:text="'Zdalnie: ' + ${remoteCount}"></h2></div>
+            <div class="col-xs-6"><h2 th:text="'W dniu: '"></h2></div>
+        </div>
+    </div>
+</div>
 
+<div class="container-fluid" style="height: 500px">
+    <div class="row">
+        <div class="col-md-6 col-lg-offset-3">
+            <div id="mCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+                <!-- Carousel items -->
+                <div class="carousel-inner" role="listbox">
+                    <div th:if="${remoteList1.size()} != 0 " class="carousel-item active">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="remote1 : ${remoteList1}">
+                                <td th:text="${remote1.getName()}"></td>
+                                <td th:text="${remote1.getDate()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${remoteList2.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="remote2 : ${remoteList2}">
+                                <td th:text="${remote2.getName()}"></td>
+                                <td th:text="${remote2.getDate()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${remoteList3.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="remote3 : ${remoteList3}">
+                                <td th:text="${remote3.getName()}"></td>
+                                <td th:text="${remote3.getDate()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${remoteList4.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="remote4 : ${remoteList4}">
+                                <td th:text="${remote4.getName()}"></td>
+                                <td th:text="${remote4.getDate()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${remoteList5.size()} != 0 " class="carousel-item">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="remote5 : ${remoteList5}">
+                                <td th:text="${remote5.getName()}"></td>
+                                <td th:text="${remote5.getDate()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
 </html>
