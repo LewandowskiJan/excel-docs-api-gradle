@@ -64,13 +64,12 @@ public class ExcelServiceDtoImpl implements ExcelServiceDto {
     @Override
     public List<ExcelDto> getExcelDtoList() throws IOException, GeneralSecurityException {
 
-        List<String> remoteList = new ArrayList<>();
-        List<String> dayOffList = new ArrayList<>();
+        List<ExcelDto> excelDtos = new ArrayList<>();
 
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1rBHt-ZirTxoZzbyAVLptHgFo6ImQnUd0o0aNF27XF3M";
-        final String range = "Arkusz1!A2:B";
+        final String range = "Arkusz1!A2:D";
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -85,40 +84,57 @@ public class ExcelServiceDtoImpl implements ExcelServiceDto {
             for (List row : values) {
                 // Print columns A and E, which correspond to indices 0 and 4.
                 //System.out.printf("%s, %s\n", row.get(0), row.get(1));
+
+
+
+                String dayOffName ="";
+                String dayOffDate ="";
+                String remoteName ="";
+                String remoteDate ="";
+                ExcelDto dayOffDto = new ExcelDto();
+                ExcelDto remoteDto = new ExcelDto();
+
                 try {
-                    remoteList.add((String) row.get(0));
+                    dayOffName = (String) row.get(0);
                 } catch (Exception exp) {
-                    remoteList.add("");
+                    dayOffName = "";
                 }
                 try {
-                    dayOffList.add((String) row.get(1));
+                    dayOffDate = (String) row.get(1);
                 } catch (Exception exp) {
-                    dayOffList.add("");
+                    dayOffDate = "";
                 }
+                try {
+                    remoteName =(String) row.get(2);
+                } catch (Exception exp) {
+                    remoteName = "";
+                }
+                try {
+                    remoteDate = (String) row.get(3);
+                } catch (Exception exp) {
+                    remoteDate = "";
+                }
+
+                dayOffDto.setName(dayOffName);
+                dayOffDto.setDate(dayOffDate);
+                dayOffDto.setHoliday(true);
+                dayOffDto.setRemote(false);
+
+                remoteDto.setName(remoteName);
+                remoteDto.setDate(remoteDate);
+                remoteDto.setHoliday(false);
+                remoteDto.setRemote(true);
+
+                excelDtos.add(dayOffDto);
+                excelDtos.add(remoteDto);
             }
         }
 
-        List<ExcelDto> excelDtos = new ArrayList<>();
-
-        for (String remote : remoteList) {
-            ExcelDto dto = new ExcelDto();
-            dto.setName(remote);
-            dto.setHoliday(false);
-            dto.setRemote(true);
-            excelDtos.add(dto);
-        }
-
-        for (String dayOff : dayOffList) {
-            ExcelDto dto = new ExcelDto();
-            dto.setName(dayOff);
-            dto.setHoliday(true);
-            dto.setRemote(false);
-            excelDtos.add(dto);
-        }
 
 
-        System.out.println("Remote = " + remoteList.toString());
-        System.out.println("Day Off = " + dayOffList.toString());
+
+
+
 
         return excelDtos;
     }
